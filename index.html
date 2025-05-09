@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pomodoro Timer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-light: #fdf7f4;
+      --text-light: #1f2937;
+      --bg-dark: #1f2937;
+      --text-dark: #fdf7f4;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    #timer {
+      font-size: 6rem;
+      letter-spacing: 2px;
+      margin-bottom: 2rem;
+      font-weight: 600;
+      color: #dc2626;
+      transition: transform 0.3s ease;
+    }
+
+    .tick {
+      transform: scale(1.05);
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .start { background-color: #dc2626; color: white; }
+    .start:hover { background-color: #b91c1c; }
+
+    .pause { background-color: #f59e0b; color: white; }
+    .pause:hover { background-color: #d97706; }
+
+    .reset { background-color: #9ca3af; color: white; }
+    .reset:hover { background-color: #6b7280; }
+
+    .toggle {
+      margin-top: 1rem;
+      background: transparent;
+      color: inherit;
+      border: 2px solid currentColor;
+    }
+
+    @media (max-width: 500px) {
+      #timer { font-size: 4rem; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Pomodoro Timer</h1>
+  <div id="timer">25:00</div>
+  <div class="controls">
+    <button class="start" onclick="startTimer()">Start</button>
+    <button class="pause" onclick="pauseTimer()">Pause</button>
+    <button class="reset" onclick="resetTimer()">Reset</button>
+  </div>
+  <button class="toggle" onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
+
+  <div style="margin-top:1rem;">
+    <label for="theme-select">🎨 Tema Warna:</label>
+    <select id="theme-select" onchange="changeTheme()">
+      <option value="red" selected>Merah</option>
+      <option value="blue">Biru</option>
+      <option value="green">Hijau</option>
+      <option value="purple">Ungu</option>
+    </select>
+  </div>
+  
+  <div style="margin-top:1rem;">
+    <label for="sound-select">🔔 Alarm:</label>
+    <select id="sound-select" onchange="changeSound()">
+      <option value="alarm1" selected>Klasik</option>
+      <option value="alarm2">Modern</option>
+      <option value="alarm3">Bell</option>
+    </select>
+  </div>
+  
+
+  <audio id="alarm-sound" src="https://freesound.org/data/previews/341/341695_6261194-lq.mp3" preload="auto"></audio>
+
+  <audio id="alarm2" src="https://assets.mixkit.co/sfx/download/mixkit-classic-alarm-995.wav" preload="auto"></audio>
+<audio id="alarm3" src="https://assets.mixkit.co/sfx/download/mixkit-bell-notification-933.wav" preload="auto"></audio>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
